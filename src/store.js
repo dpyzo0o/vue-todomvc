@@ -3,22 +3,18 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const KEY = 'VUE_TODO_MVC'
+
+const localStoragePlugin = store => {
+  store.subscribe((mutation, state) => {
+    localStorage.setItem(KEY, JSON.stringify(state))
+  })
+}
+
 export default new Vuex.Store({
-  state: {
-    todos: [
-      {
-        id: 0,
-        title: 'Hello World',
-        completed: false,
-        editing: false,
-      },
-      {
-        id: 1,
-        title: 'Hello Vue',
-        completed: false,
-        editing: false,
-      },
-    ],
+  plugins: [localStoragePlugin],
+  state: JSON.parse(localStorage.getItem(KEY)) || {
+    todos: [],
     filter: 'all',
   },
   getters: {
