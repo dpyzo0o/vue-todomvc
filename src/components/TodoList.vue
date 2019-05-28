@@ -1,22 +1,28 @@
 <template>
   <div class="container">
-    <img src="../assets/logo.png" alt="vue logo" class="logo">
+    <img src="../assets/logo.png" alt="vue logo" class="logo" />
     <input
       type="text"
       class="todo-input"
       placeholder="What needs to be done"
       v-model="newTodo"
       @keydown.enter="addTodo"
-    >
+    />
     <div class="todo-item" v-for="todo in filteredTodos" :key="todo.id">
       <div class="todo-item-left">
-        <input type="checkbox" :checked="todo.completed" @change="completeTodo(todo.id)">
+        <input
+          type="checkbox"
+          :checked="todo.completed"
+          @change="completeTodo(todo.id)"
+        />
         <div
           v-if="!todo.editing"
           class="todo-item-label"
           :class="{ completed: todo.completed }"
           @dblclick="editTodo(todo.id)"
-        >{{todo.title}}</div>
+        >
+          {{ todo.title }}
+        </div>
         <input
           v-else
           autofocus
@@ -25,26 +31,35 @@
           v-model="todo.title"
           @blur="doneEdit(todo.id)"
           @keydown.enter="doneEdit(todo.id)"
-        >
+        />
       </div>
       <div class="remove-item" @click="deleteTodo(todo.id)">&times;</div>
     </div>
     <div class="extra-container">
       <div>
         <label>
-          <input type="checkbox" @change="checkAllTodos">Check All
+          <input type="checkbox" @change="checkAllTodos" />Check All
         </label>
       </div>
-      <div>{{todosRemaining}} items left</div>
+      <div>{{ todosRemaining }} items left</div>
     </div>
     <div class="extra-container">
       <div>
-        <button @click="setFilter('all')" :class="{ active: filter === 'all' }">All</button>
-        <button @click="setFilter('active')" :class="{ active: filter === 'active' }">Active</button>
+        <button @click="setFilter('all')" :class="{ active: filter === 'all' }">
+          All
+        </button>
+        <button
+          @click="setFilter('active')"
+          :class="{ active: filter === 'active' }"
+        >
+          Active
+        </button>
         <button
           @click="setFilter('completed')"
           :class="{ active: filter === 'completed' }"
-        >Completed</button>
+        >
+          Completed
+        </button>
       </div>
 
       <div>
