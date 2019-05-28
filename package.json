@@ -1,5 +1,5 @@
 {
-  "name": "hello-world",
+  "name": "vue-todo-mvc",
   "version": "0.1.0",
   "private": true,
   "scripts": {
